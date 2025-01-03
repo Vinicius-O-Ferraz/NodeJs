@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "5_accounts": "file:",
-    "chalk": "^5.4.1",
+    "chalk": "^4.1.2",
     "inquirer": "^8.2.6"
   }
 }
