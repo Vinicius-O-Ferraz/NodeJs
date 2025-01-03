@@ -26,6 +26,11 @@ function operation(){
             createAccount()
         }
 
+        if(action === 'Sair'){
+            console.log('Finishing service')
+            process.exit()
+        }
+
     })
     .catch((err)=> console.log(err))
 }
@@ -54,17 +59,19 @@ function buildAccount(){
     if(fs.existsSync(`accounts/${accountName}.json`)){
         console.log(chalk.bgRed.black('This account already exists!'))
         buildAccount()
+        return
     }
 
-    fs.writeFileSync(`accounts/${accountName}`,
-        '(balance:0)',
+    fs.writeFileSync(`accounts/${accountName}.json`,
+        '{"balance":0}',
          function(err)
     {
         console.log(err)
     }
 )
 
-    console.log(chalk.green('Conta criada'))
+    console.log(chalk.green("Your account has been created"))
+    operation()
 
 
 }).catch((err)=> console.log(err))
