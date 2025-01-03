@@ -33,5 +33,39 @@ function operation(){
 function createAccount(){
     console.log(chalk.bgWhite.black('Congratulations on choosing our bank!'))
     console.log(chalk.bgWhite.black('Choose the settings of your account bellow:'))
+    buildAccount()
+}
 
+function buildAccount(){
+    inquirer.prompt([
+    {
+        name: 'accountName',
+        message: "Choose your account's name"   
+    }
+]).then(answer=>{
+
+    const accountName = answer['accountName']
+    console.info(accountName)
+
+    if(!fs.existsSync('accounts')){
+        fs.mkdirSync('accounts')
+    }
+
+    if(fs.existsSync(`accounts/${accountName}.json`)){
+        console.log(chalk.bgRed.black('This account already exists!'))
+        buildAccount()
+    }
+
+    fs.writeFileSync(`accounts/${accountName}`,
+        '(balance:0)',
+         function(err)
+    {
+        console.log(err)
+    }
+)
+
+    console.log(chalk.green('Conta criada'))
+
+
+}).catch((err)=> console.log(err))
 }
