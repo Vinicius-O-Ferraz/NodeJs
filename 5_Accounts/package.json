@@ -1,0 +1,19 @@
+{
+  "name": "5_accounts",
+  "version": "1.0.0",
+  "description": "Abstração de banco usando NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bank"
+  ],
+  "author": "vinicius",
+  "license": "ISC",
+  "dependencies": {
+    "5_accounts": "file:",
+    "chalk": "^5.4.1",
+    "inquirer": "^8.2.6"
+  }
+}
