@@ -190,7 +190,6 @@ function withdraw(){
             const ammount = answer['ammount']
             
             removeAmmount(accountName,ammount)
-            // operation()
         }).catch((err)=>console.log(err))
 
     }).catch((err)=>console.log(err))
@@ -210,7 +209,7 @@ function removeAmmount(accountName,ammount){
 
     accountData.balance = (parseFloat(accountData.balance) - parseFloat(ammount))
     fs.writeFileSync(
-        `account/${accountName}.json`,
+        `accounts/${accountName}.json`,
         JSON.stringify(accountData),
 
     )
