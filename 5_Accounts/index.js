@@ -166,5 +166,31 @@ function getAccountBalance(){
     
     }).catch((err)=>console.log(err))
 
-    
+}
+
+function withdraw(){
+    inquirer.prompt([
+        {
+            name: 'accountName',
+            message: 'Qual o nome da conta'   
+        }
+    ]).then((answer) => {
+        const accountName = answer['accountName']
+
+        if (!checkAccount(accountName)){
+            return withdraw()
+        }
+
+        inquirer.prompt([
+            {
+            name:'ammount',
+            message: 'Quanto você deseja sacar',
+            }
+        ]).then((answer)=>{
+            const ammount = answer['ammount']
+            console.log(ammount)
+        }).catch((err)=>console.log(err))
+
+    }).catch((err)=>console.log(err))
+
 }
