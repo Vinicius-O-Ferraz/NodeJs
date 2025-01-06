@@ -24,13 +24,16 @@ function operation(){
 
         if(action === 'Criar conta'){
             createAccount()
-        }
-
-        if(action === 'Sair'){
+        }else if(action === 'Consultar saldo'){
+            searchCredit()
+        }else if(action === 'Depositar'){
+            deposit()
+        } else if(action === 'Sacar'){
+           withdraw()
+        }else if(action === 'Sair'){
             console.log('Finishing service')
             process.exit()
         }
-
     })
     .catch((err)=> console.log(err))
 }
@@ -75,4 +78,29 @@ function buildAccount(){
 
 
 }).catch((err)=> console.log(err))
+}
+
+function deposit()
+    {
+    inquirer.prompt([{
+        name:'accountName',
+        message:'Qual o nome da conta'
+    }
+])
+.then((answer) =>{
+    const accountName = answer['accountName']
+    if(!checkAccount(accountName)){
+        return deposit();
+    }
+    
+    })
+    .catch((err)=>console.log(err))
+}
+
+function checkAccount(accountName){
+    if(!fs.existsSync(`accounts/${accountName}.json`)){
+        console.log('escolha outro nome')
+        return false
+    }
+    return true
 }
