@@ -188,9 +188,31 @@ function withdraw(){
             }
         ]).then((answer)=>{
             const ammount = answer['ammount']
-            console.log(ammount)
+            
+            removeAmmount(accountName,ammount)
+            // operation()
         }).catch((err)=>console.log(err))
 
     }).catch((err)=>console.log(err))
+}
 
+function removeAmmount(accountName,ammount){
+    const accountData = getAccount(accountName)
+
+    if (!ammount){
+        console.log("Ocorreu um erro, tente novamente mais tarde")
+    }
+
+    if(accountData.balance < ammount){
+        console.log("Valor indisponivel")
+        return withdraw()
+    }
+
+    accountData.balance = (parseFloat(accountData.balance) - parseFloat(ammount))
+    fs.writeFileSync(
+        `account/${accountName}.json`,
+        JSON.stringify(accountData),
+
+    )
+    console.log(`Foi realizado um saque de R$${ammount}`)
 }
