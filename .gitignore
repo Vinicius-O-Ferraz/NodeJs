@@ -129,4 +129,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-.5_Accounts\accounts
+.5_Accounts/accounts
