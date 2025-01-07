@@ -2,8 +2,6 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const fs = require('fs')
 
-operation()
-
 function operation(){
     inquirer.prompt([{
         type:'list',
@@ -20,7 +18,6 @@ function operation(){
     .then((answer)=>{
 
         const action = answer['action']
-        console.log(action)
 
         if(action === 'Criar conta'){
             createAccount()
@@ -31,7 +28,7 @@ function operation(){
         } else if(action === 'Sacar'){
            withdraw()
         }else if(action === 'Sair'){
-            console.log('Finishing service')
+            console.log('Finalizando o atendimento')
             process.exit()
         }
     })
@@ -39,8 +36,8 @@ function operation(){
 }
 
 function createAccount(){
-    console.log(chalk.bgWhite.black('Congratulations on choosing our bank!'))
-    console.log(chalk.bgWhite.black('Choose the settings of your account bellow:'))
+    console.log(chalk.green('Muito obrigado por escolher nosso banco!'))
+    console.log(chalk.green('Escolha as configurações desta conta abaixo: '))
     buildAccount()
 }
 
@@ -48,7 +45,7 @@ function buildAccount(){
     inquirer.prompt([
     {
         name: 'accountName',
-        message: "Choose your account's name"   
+        message: "Escolha o nome de sua conta"   
     }
 ]).then(answer=>{
 
@@ -60,7 +57,7 @@ function buildAccount(){
     }
 
     if(fs.existsSync(`accounts/${accountName}.json`)){
-        console.log(chalk.bgRed.black('This account already exists!'))
+        console.log(chalk.red('This account already exists!'))
         buildAccount()
         return
     }
@@ -69,7 +66,7 @@ function buildAccount(){
         '{"balance":0}',
          function(err)
     {
-        console.log(err)
+        console.log(chalk.red(err))
     }
 )
 
@@ -77,7 +74,7 @@ function buildAccount(){
     operation()
 
 
-}).catch((err)=> console.log(err))
+}).catch((err)=>console.log(chalk.red(err)))
 }
 
 function deposit()
@@ -123,7 +120,7 @@ function getAccount(accountName){
 
 function checkAccount(accountName){
     if(!fs.existsSync(`accounts/${accountName}.json`)){
-        console.log('escolha outro nome')
+        console.log(chalk.red('escolha outro nome'))
         return false
     }
     return true
@@ -134,7 +131,7 @@ function addAmount(accountName, ammount){
 
 
     if(!ammount){
-        console.log("Ocorreu um erro, tente novamente mais tarde")
+        console.log(chalk.red("Ocorreu um erro, tente novamente mais tarde")) 
         return deposit()
     }
 
@@ -144,7 +141,7 @@ function addAmount(accountName, ammount){
         JSON.stringify(accountData),
         function(err){console.log(err)},
     )
-    console.log(`Foi depositado o valor de R$${ammount} na sua conta`)
+    console.log(chalk.green(`Foi depositado o valor de R$${ammount} na sua conta`))
 }
 
 function getAccountBalance(){
@@ -161,11 +158,9 @@ function getAccountBalance(){
         }
 
         const accountData = getAccount(accountName)
-        console.log(`Olá o saldo da sua conta é R$${accountData.balance}`)
+        console.log(chalk.green(`O saldo da sua conta é R$${accountData.balance}`))
         operation()
-    
     }).catch((err)=>console.log(err))
-
 }
 
 function withdraw(){
@@ -199,11 +194,11 @@ function removeAmmount(accountName,ammount){
     const accountData = getAccount(accountName)
 
     if (!ammount){
-        console.log("Ocorreu um erro, tente novamente mais tarde")
+        console.log(chalk.red("Ocorreu um erro, tente novamente mais tarde"))
     }
 
     if(accountData.balance < ammount){
-        console.log("Valor indisponivel")
+        console.log(chalk.red("Valor indisponivel"))
         return withdraw()
     }
 
@@ -211,7 +206,8 @@ function removeAmmount(accountName,ammount){
     fs.writeFileSync(
         `accounts/${accountName}.json`,
         JSON.stringify(accountData),
-
     )
-    console.log(`Foi realizado um saque de R$${ammount}`)
+    console.log(chalk.green(`Foi realizado um saque de R$${ammount}`))
 }
+
+operation()
