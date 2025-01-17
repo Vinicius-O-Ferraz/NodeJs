@@ -12,8 +12,10 @@ const checkAuth = function(req,res,next){
 
     if(req.authStatus){
         console.log('Está logado')
+        next()
     }else{
         console.log('Não está logado')
+        next()
     }
 }
 
