@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "nodemon ./index localhost 5000"
   },
   "author": "Vinicius Ferraz",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "tarefa": "file:"
   }
 }
