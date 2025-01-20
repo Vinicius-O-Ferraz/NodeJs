@@ -1,0 +1,12 @@
+body{
+    background-color: antiquewhite;
+    color: midnightblue;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    line-break: auto;
+}
