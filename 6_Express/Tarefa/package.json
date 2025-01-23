@@ -4,7 +4,7 @@
   "description": "tarefa do curso",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon ./index localhost 5000"
   },
   "author": "Vinicius Ferraz",

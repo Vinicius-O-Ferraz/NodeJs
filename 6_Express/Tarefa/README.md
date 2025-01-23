@@ -8,6 +8,8 @@ Criar projeto Node
 
 * 2 - Adicionar Nodemon e colocá-lo em um script chamado server para rodá-lo na porta 5000
 
+Executar script 
+`npm start seu_script`
 
 * 3 - Criar duas páginas a sua escolha
 
