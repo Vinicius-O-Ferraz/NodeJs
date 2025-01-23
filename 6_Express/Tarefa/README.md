@@ -9,7 +9,6 @@ Criar projeto Node
 * 2 - Adicionar Nodemon e colocá-lo em um script chamado server para rodá-lo na porta 5000
 
 
-
 * 3 - Criar duas páginas a sua escolha
 
 * 4 - Adicione CSS as páginas, mudando a cor de fundo e a cor da fonte, pelo menos

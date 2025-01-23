@@ -21,3 +21,11 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`App rodando na porta: ${port}`);
 });
+
+app.get('/users/add',(req, res)=>{
+    res.sendFile(`${basePath}/userform.html`)
+})
+
+app.post('/users/save',(req,res) =>{
+
+})
