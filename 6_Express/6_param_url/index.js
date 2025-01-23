@@ -6,14 +6,13 @@ const path = require("path");
 
 const basePath = path.join(__dirname, "templates");
 
-// criar rota
-app.get('/users/:id',(req, res) =>{
+app.get("/users/:id", (req, res) => {
+
     const id = req.params.id
 
-    //Leitura e resgate de usuário da tabela users
     console.log(`Estamos buscando pelo usuário ${id}`)
-    res.sendFile(`${basePath}/users.html`)
-})
+    res.sendFile(`${basePath}/users.html`);
+});
 
 app.get("/", (req, res) => {
     res.sendFile(`${basePath}/index.html`);
